@@ -1,18 +1,23 @@
 name: Daily Commit Workflow
 
 on:
+  workflow_dispatch:      # Allows manual trigger
   schedule:
-    - cron: '15 3 * * *'  # Runs daily at 03:15 UTC
-  workflow_dispatch:
+    - cron: '15 3 * * *'   # Runs every day at 03:15 UTC
 
 jobs:
-  daily-commit:
+  commit-job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout the repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Make a change and commit (23f2003403@ds.study.iitm.ac.in)
+      - name: Create commit (23f2003403@ds.study.iitm.ac.in)
         run: |
+          echo "Last run: $(date -u)" > commit-log.txt
           git config user.name "GitHub Actions"
-          echo user.email "23f2003403@ds.study.iitm.ac.in"
+          git config user.email "23f2003403@ds.study.iitm.ac.in"
+          git add commit-log.txt
+          git commit -m "Daily commit - $(date -u)" || echo "Nothing to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:${{ github.ref_name }}
