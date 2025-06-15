@@ -12,11 +12,7 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
-      - name: Make a change and commit (abc@mail.com)
+      - name: Make a change and commit (23f2003403@ds.study.iitm.ac.in)
         run: |
-          echo "Last run: $(date -u)" > daily-run.log
           git config user.name "GitHub Actions"
-          git config user.email "abc@mail.com"
-          git add daily-run.log
-          git commit -m "Daily commit - $(date -u)"
-          git push
+          echo user.email "23f2003403@ds.study.iitm.ac.in"
