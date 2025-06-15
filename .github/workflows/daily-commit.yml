@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout code 23f2003403@ds.study.iitm.ac.in
         uses: actions/checkout@v4
 
-      - name: 23f2003403@ds.study.iitm.ac.in
+      - name: 23f2003403@ds.study.iitm.ac.in daily run commit
         run: |
           echo "Last run: $(date -u) 23f2003403@ds.study.iitm.ac.in" > commit-log.txt
           git config user.name "GitHub Actions"
